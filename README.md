@@ -1,3 +1,21 @@
+## Flashcard Web App API Routes
+
+| Description                         | HTTP Method | Path                    | CRUD Action  | View Page         |
+|-------------------------------------|-------------|-------------------------|--------------|-------------------|
+| Authenticate user and log in        | POST        | /api/login              | Authenticate | Login             |
+| Create a new user account           | POST        | /api/register           | Create       | Register          |
+| Retrieve a list of flashcards       | GET         | /api/flashcards         | Read         | Flashcard Listing |
+| Create a new flashcard              | POST        | /api/flashcards         | Create       | Create Flashcards |
+| Retrieve a specific flashcard       | GET         | /api/flashcards/:id     | Read         | Flashcard Detail  |
+| Update a specific flashcard         | PUT         | /api/flashcards/:id     | Update       | Edit Flashcard    |
+| Delete a specific flashcard         | DELETE      | /api/flashcards/:id     | Delete       | Flashcard Listing |
+| Retrieve a specific flashcard       | GET         | /api/study/:id          | Read         | Study Mode        |
+| Retrieve user profile information   | GET         | /api/profile            | Read         | Profile           |
+| Update user profile information     | PUT         | /api/profile            | Update       | Edit Profile      |
+| Change user password                | PUT         | /api/profile/password   | Update       | Change Password   |
+| Log out the current user            | GET         | /api/logout             | N/A          | Logout            |
+
+
 # MERN Auth Server
 
 Server starter code for project 3
