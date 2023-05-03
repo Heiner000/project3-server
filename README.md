@@ -1,62 +1,73 @@
-## Flashcard Web App API Routes
+# CARD.IO Web App
 
-| Description                         | HTTP Method | Path                    | CRUD Action  | View Page         |
-|-------------------------------------|-------------|-------------------------|--------------|-------------------|
-| Authenticate user and log in        | POST        | /api/login              | Authenticate | Login             |
-| Create a new user account           | POST        | /api/register           | Create       | Register          |
-| Retrieve a list of flashcards       | GET         | /api/flashcards         | Read         | Flashcard Listing |
-| Create a new flashcard              | POST        | /api/flashcards         | Create       | Create Flashcards |
-| Retrieve a specific flashcard       | GET         | /api/flashcards/:id     | Read         | Flashcard Detail  |
-| Update a specific flashcard         | PUT         | /api/flashcards/:id     | Update       | Edit Flashcard    |
-| Delete a specific flashcard         | DELETE      | /api/flashcards/:id     | Delete       | Flashcard Listing |
-| Retrieve a specific flashcard       | GET         | /api/study/:id          | Read         | Study Mode        |
-| Retrieve user profile information   | GET         | /api/profile            | Read         | Profile           |
-| Update user profile information     | PUT         | /api/profile            | Update       | Edit Profile      |
-| Change user password                | PUT         | /api/profile/password   | Update       | Change Password   |
-| Log out the current user            | GET         | /api/logout             | N/A          | Logout            |
+A full-stack MERN application that enables users to create and manage digital flashcards to improve their learning experience. The application incorporates users authentication, image handling via Cloudinary API, and a responsive design for a seamless experienece across various devices.
 
+## Description
 
-# MERN Auth Server
+The Card.io Web App provides an intuitive platform for users to create, edit, delete, and study flashcards on a range of topics. Through an easy-to-use interface, users can register, log in, and manage their flashcards efficiently. The application also offers the ability to study flashcards in a dedicated study mode, enhancing the overall learning experience.
 
-Server starter code for project 3
+## Technologies
 
-## Getting Setup
++ We plan to utilize the Cloudinary API to handle uploading, storing, and retrieving images for user profiles and flashcards.
++ Styling will be completed with React-Bootstrap package.
 
-### If you are a git manager for the server
+## ERDs
 
-* clone this repo down directly, do not fork it
-	* you can use `git clone < cloning url > < your project name >` to name the directory it is cloned into
-* cd into the directory you just cloned
-* run `rm -rf .git` to delete the git repo
-* run `git init` to create a fresh git repo
-* add and commit the code
-* create a new repo on github that will be your origin and your group's upstream
-* copy the code chunk from github "...or push an existing repository from the command line." 
-* share the repos url with your teammates so they can fork it 
+![CARDioERD](https://i.imgur.com/acpRewD.png)
 
-### If you are a contributor
+## Card.io Web App API Routes
 
-* fork your backend repo manger's code
-* clone _your fork_ of the code and cd into the directory
-* run `git remote add upstream < your frontend repo manager's cloning url >`
-* check your work with `git remote -v`
-	* `origin` should refer to your fork 
-	* `upstream` should refer to your git manager's repo
+| Description                         | HTTP Method | Path                       | CRUD Action  | View Page            |
+|-------------------------------------|-------------|----------------------------|--------------|----------------------|
+| Authenticate user and log in        | POST        | /api/login                 | Authenticate | Login                |
+| Create a new user account           | POST        | /api/register              | Create       | Register             |
+| Retrieve a list of decks            | GET         | /api/decks                 | Read         | Dashboard            |
+| Create a new deck                   | POST        | /api/decks                 | Create       | Create Deck          |
+| Retrieve a specific deck            | GET         | /api/decks/:id             | Read         | Deck Detail          |
+| Update a specific deck              | PUT         | /api/decks/:id             | Update       | Edit Deck            |
+| Delete a specific deck              | DELETE      | /api/decks/:id             | Delete       | Dashboard            |
+| Retrieve a list of flashcards       | GET         | /api/decks/:id/flashcards  | Read         | Flashcard Listing    |
+| Create a new flashcard              | POST        | /api/decks/:id/flashcards  | Create       | Create Flashcard     |
+| Retrieve a specific flashcard       | GET         | /api/flashcards/:id        | Read         | Flashcard Detail     |
+| Update a specific flashcard         | PUT         | /api/flashcards/:id        | Update       | Edit Flashcard       |
+| Delete a specific flashcard         | DELETE      | /api/flashcards/:id        | Delete       | Flashcard Listing    |
+| Retrieve a specific flashcard       | GET         | /api/study/:id             | Read         | Study Mode           |
+| Retrieve user profile information   | GET         | /api/profile               | Read         | Profile              |
+| Update user profile information     | PUT         | /api/profile               | Update       | Edit Profile         |
+| Change user password                | PUT         | /api/profile/password      | Update       | Change Password      |
+| Log out the current user            | GET         | /api/logout                | N/A          | Logout               |
 
-### Steps for everyone to get the code running
+## Wireframes
 
-* `touch .env`
-* add the following to the `.env` file:
-```
-# jwt secret for signing json web tokens -- can be any string
-JWT_SECRET="mysecretmessage"
-```
-* run `npm i` to install the required packages
-* run `nodemon` or `node .` start the server
+![landing, login, profile, dashboard](./assets/wireframes-1-4.png)
+![new deck, deck view, flashcard mode](./assets/wireframes-5-7.png)
 
+## User Stories
 
++ As a new user, I want to register for an account
++ As a user, I want to update my password &/or profile info
++ As a user, I want to be able to log out
++ As a user, I want to be able to login to manage my decks and flashcards
++ As a user, I want to create a new flash card deck to stay organized by subject
++ As a user, I want to see all my decks on my dashboard
++ As a user, I want to edit or delete a deck
++ As a user, I want to create flashcards within a specific deck
++ As a user, I want to view all the flashcards within a specific deck to manage or study them
++ As a user, I want to be able to edit or delete a flashcard
++ As a user, I want to study my flashcards
 
+## MVP Goals
 
++ Register, login, logout
++ Create and delete individual decks
++ Create and delete flashcards from each deck
++ Use the decks to study
++ Flashcards use animation to reveal answer
++ Includes a next/skip button
 
+## Stretch Goals
 
-
++ Incoporate Cloudindary API to allow users to add images to their flash cards
++ Shuffle deck option
++ Profile page with stats
++ Track right/wrong answers
