@@ -20,6 +20,5 @@ db.on('error', err => {
 
 module.exports = {
 	User: require('./User'),
-	Deck: require('./Deck'),
-	Flashcard: require('./Flashcard')
+	Deck: require('./Deck')
 }

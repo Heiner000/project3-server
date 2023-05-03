@@ -1,6 +1,17 @@
 // require mongoose ODM
 const mongoose = require("mongoose")
 
+const FlashcardSchema = new mongoose.Schema({
+    front: {
+        type: String
+    },
+    back: {
+        type: String
+    }
+}, {
+    timestamps: true
+})
+
 const DeckSchema = new mongoose.Schema({
     title: {
         type: String
@@ -9,12 +20,7 @@ const DeckSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    flashcards: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Flashcard"
-        }
-    ]
+    flashcards: [FlashcardSchema]
 }, {
     timestamps: true
 })
