@@ -18,7 +18,7 @@ db.on('error', err => {
 	console.error(`🔥 Datacenter burned down:\n${err}`)
 })
 
-
 module.exports = {
-	User: require('./User')
+	User: require('./User'),
+	Deck: require('./Deck')
 }
