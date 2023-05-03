@@ -5,7 +5,7 @@ const authLockedRoute = require('./authLockedRoute')
 // GET /decks -- get all decks for a user
 router.get('/', authLockedRoute, async (req, res) => {
     try {
-        const decks = await db.User.findById(req.user._id).populate('decks')
+        const decks = await db.User.findById(res.locals.user._id).populate('decks')
         res.json(decks.decks)
     } catch (err) {
         console.log(err)
@@ -18,11 +18,11 @@ router.post('/', authLockedRoute, async (req, res) => {
     try {
         const newDeck = new db.Deck({
             title: req.body.title,
-            user: req.user._id
+            user: res.locals.user._id
         })
         const savedDeck = await newDeck.save()
 
-        const user = await db.User.findById(req.user._id)
+        const user = await db.User.findById(res.locals.user._id)
         user.decks.push(savedDeck._id)
         await user.save()
 
@@ -64,7 +64,7 @@ router.delete('/:id', authLockedRoute, async (req, res) => {
         const { id } = req.params
         const deletedDeck = await db.Deck.findByIdAndDelete(id)
 
-        const user = await db.User.findById(req.user._id)
+        const user = await db.User.findById(res.locals.user._id)
         user.decks.pull(deletedDeck._id)
         await user.save()
 
