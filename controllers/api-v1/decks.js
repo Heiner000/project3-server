@@ -36,7 +36,8 @@ router.post('/', authLockedRoute, async (req, res) => {
 // GET /decks/:id -- load a specific deck
 router.get('/:id', authLockedRoute, async (req, res) => {
     try {
-        const deck = await db.Deck.findById(req.params.id)
+        const { id } = req.params
+        const deck = await db.Deck.findById(id)
         res.json(deck)
     } catch (err) {
         console.log(err)
