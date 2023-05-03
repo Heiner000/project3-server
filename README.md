@@ -17,25 +17,25 @@ The Card.io Web App provides an intuitive platform for users to create, edit, de
 
 ## Card.io Web App API Routes
 
-| Description                         | HTTP Method | Path                       | CRUD Action  | View Page            |
-|-------------------------------------|-------------|----------------------------|--------------|----------------------|
-| Authenticate user and log in        | POST        | /api/login                 | Authenticate | Login                |
-| Create a new user account           | POST        | /api/register              | Create       | Register             |
-| Retrieve a list of decks            | GET         | /api/decks                 | Read         | Dashboard            |
-| Create a new deck                   | POST        | /api/decks                 | Create       | Create Deck          |
-| Retrieve a specific deck            | GET         | /api/decks/:id             | Read         | Deck Detail          |
-| Update a specific deck              | PUT         | /api/decks/:id             | Update       | Edit Deck            |
-| Delete a specific deck              | DELETE      | /api/decks/:id             | Delete       | Dashboard            |
-| Retrieve a list of flashcards       | GET         | /api/decks/:id/flashcards  | Read         | Flashcard Listing    |
-| Create a new flashcard              | POST        | /api/decks/:id/flashcards  | Create       | Create Flashcard     |
-| Retrieve a specific flashcard       | GET         | /api/flashcards/:id        | Read         | Flashcard Detail     |
-| Update a specific flashcard         | PUT         | /api/flashcards/:id        | Update       | Edit Flashcard       |
-| Delete a specific flashcard         | DELETE      | /api/flashcards/:id        | Delete       | Flashcard Listing    |
-| Retrieve a specific flashcard       | GET         | /api/study/:id             | Read         | Study Mode           |
-| Retrieve user profile information   | GET         | /api/profile               | Read         | Profile              |
-| Update user profile information     | PUT         | /api/profile               | Update       | Edit Profile         |
-| Change user password                | PUT         | /api/profile/password      | Update       | Change Password      |
-| Log out the current user            | GET         | /api/logout                | N/A          | Logout               |
+| Description                         | HTTP Method | Path                   | CRUD Action  | View Page            |
+|-------------------------------------|-------------|------------------------|--------------|----------------------|
+| Authenticate user and log in        | POST        | /login                 | Authenticate | Login                |
+| Create a new user account           | POST        | /register              | Create       | Register             |
+| Retrieve a list of decks            | GET         | /decks                 | Read         | Dashboard            |
+| Create a new deck                   | POST        | /decks                 | Create       | Create Deck          |
+| Retrieve a specific deck            | GET         | /decks/:id             | Read         | Deck Detail          |
+| Update a specific deck              | PUT         | /decks/:id             | Update       | Edit Deck            |
+| Delete a specific deck              | DELETE      | /decks/:id             | Delete       | Dashboard            |
+| Retrieve a list of flashcards       | GET         | /decks/:id/flashcards  | Read         | Flashcard Listing    |
+| Create a new flashcard              | POST        | /decks/:id/flashcards  | Create       | Create Flashcard     |
+| Retrieve a specific flashcard       | GET         | /flashcards/:id        | Read         | Flashcard Detail     |
+| Update a specific flashcard         | PUT         | /flashcards/:id        | Update       | Edit Flashcard       |
+| Delete a specific flashcard         | DELETE      | /flashcards/:id        | Delete       | Flashcard Listing    |
+| Retrieve a specific flashcard       | GET         | /study/:id             | Read         | Study Mode           |
+| Retrieve user profile information   | GET         | /profile               | Read         | Profile              |
+| Update user profile information     | PUT         | /profile               | Update       | Edit Profile         |
+| Change user password                | PUT         | /profile/password      | Update       | Change Password      |
+| Log out the current user            | GET         | /logout                | N/A          | Logout               |
 
 ## Wireframes
 
