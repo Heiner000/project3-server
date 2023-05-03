@@ -37,6 +37,11 @@ The Card.io Web App provides an intuitive platform for users to create, edit, de
 | Change user password                | PUT         | /api/profile/password      | Update       | Change Password      |
 | Log out the current user            | GET         | /api/logout                | N/A          | Logout               |
 
+## Wireframes
+
+![landing, login, profile, dashboard](./assets/wireframes-1-4.png)
+![new deck, deck view, flashcard mode](./assets/wireframes-5-7.png)
+
 ## User Stories
 
 + As a new user, I want to register for an account
