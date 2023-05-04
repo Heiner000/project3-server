@@ -49,10 +49,14 @@ router.delete('/:id', authLockedRoute, async (req, res) => {
         const deck = await db.Deck.findOne({ 'flashcards._id': id })
 
         if (deck) {
-            const flashcard = deck.flashcards.id(id)
-            flashcard.remove()
-            await deck.save()
-            res.json({ msg: 'flashcard delete successful' })
+            const flashcardIndex = deck.flashcards.findIndex((card) => card.id === id)
+            if (flashcardIndex !== -1) {
+                deck.flashcards.splice(flashcardIndex, 1);
+                await deck.save();
+                res.json({ msg: 'flashcard delete successful' });
+              } else {
+                res.status(404).json({ msg: 'flashcard not found' });
+              }
         } else {
             res.status(404).json({ msg: 'flashcard not found' })
         }
