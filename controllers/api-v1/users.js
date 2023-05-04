@@ -93,7 +93,28 @@ router.post('/login', async (req, res) => {
 		res.status(500).json({ msg: 'server error' })
 	}
 })
-
+router.post('/profile', authLockedRoute, async (req, res) => {
+	try {
+		const { email, password } = req.body;
+		const userId = req.user._id; 
+	
+		// Find user in the db
+		const user = await db.User.findById(userId);
+		if (!user) {
+		  return res.status(404).json({ error: 'User not found' });
+		}
+	
+		// Update the user's email and password
+		user.email = email;
+		user.password = password;
+		await user.save();
+	
+		res.json({ message: 'User email and password updated successfully' });
+	  } catch (err) {
+		console.error(err);
+		res.status(500).json({ msg: 'server error' });
+	  }
+})
 
 // GET /auth-locked - will redirect if bad jwt token is found
 router.get('/auth-locked', authLockedRoute, (req, res) => {
