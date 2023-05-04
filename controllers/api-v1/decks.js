@@ -107,7 +107,6 @@ router.post('/:id/flashcards', authLockedRoute, async (req, res) => {
         console.log(err)
         res.status(500).json({ msg: 'server error creating new flashcard'})
     }
-    res.send(`creating a new flashcard for deck ${req.params}`)
 })
 
 module.exports = router
