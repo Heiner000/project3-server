@@ -93,10 +93,12 @@ router.post('/login', async (req, res) => {
 		res.status(500).json({ msg: 'server error' })
 	}
 })
-router.post('/profile', authLockedRoute, async (req, res) => {
+
+// PUT /users/profile -- update a user's profile
+router.put('/profile', authLockedRoute, async (req, res) => {
 	try {
 		const { email, password } = req.body;
-		const userId = req.user._id; 
+		const userId = res.locals.user._id; 
 	
 		// Find user in the db
 		const user = await db.User.findById(userId);
@@ -106,7 +108,12 @@ router.post('/profile', authLockedRoute, async (req, res) => {
 	
 		// Update the user's email and password
 		user.email = email;
-		user.password = password;
+
+		// has the new password before updating
+		const saltRounds = 12
+		const hashedPassword = await bcrypt.hash(password, saltRounds)
+		user.password = hashedPassword;
+
 		await user.save();
 	
 		res.json({ message: 'User email and password updated successfully' });
