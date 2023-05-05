@@ -123,6 +123,27 @@ router.put('/profile', authLockedRoute, async (req, res) => {
 	  }
 })
 
+// PUT -- updates user's score
+router.put('/update-score/:id', async (req, res) => {
+	try {
+		const { id } = req.params
+		const user = await User.findById(id)
+
+		if (!user) {
+			return res.status(404).json({ msg: 'user not found' })
+		}
+
+		const points = req.body.points || 0
+		user.score += points
+		await user.save()
+
+		res.json({ msg: 'score updated successfully', user })
+	} catch (err) {
+		console.warn(err)
+		res.status(500).json({ msg: 'server error updating score' })
+	}
+})
+
 // GET /auth-locked - will redirect if bad jwt token is found
 router.get('/auth-locked', authLockedRoute, (req, res) => {
 	// use res.locals.user here to do authorization stuff
