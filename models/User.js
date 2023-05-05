@@ -11,6 +11,10 @@ const UserSchema = new mongoose.Schema({
 	password: {
 		type: String
 	},
+	score: {
+		type: Number,
+		default: 0
+	},
 	decks: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
