@@ -116,7 +116,7 @@ router.put('/profile', authLockedRoute, async (req, res) => {
 
 		await user.save();
 	
-		res.json({ message: 'User email and password updated successfully' });
+		res.json({ message: 'User email and password updated successfully', user: user });
 	  } catch (err) {
 		console.error(err);
 		res.status(500).json({ msg: 'server error' });
