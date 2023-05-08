@@ -13,7 +13,8 @@ const rowdyResults = rowdy.begin(app)
 app.use(cors())
 // request body parsing
 app.use(express.json())
-
+// static upload folder for images
+app.use(express.static('uploads'))
 // GET / -- test index route
 app.get('/', (req, res) => {
     res.json({ msg: 'hello backend 🤖' })
@@ -23,7 +24,7 @@ app.get('/', (req, res) => {
 app.use('/api-v1/users', require('./controllers/api-v1/users.js'))
 app.use('/api-v1/decks', require('./controllers/api-v1/decks.js'))
 app.use('/api-v1/flashcards', require('./controllers/api-v1/flashcards.js'))
-app.use('/api-v1', require('./controllers/api-v1/uploads'))
+app.use('/api-v1', require('./controllers/api-v1/uploads.js'))
 
 // hey listen
 app.listen(PORT, () => {
