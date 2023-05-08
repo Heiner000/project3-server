@@ -13,7 +13,8 @@ const rowdyResults = rowdy.begin(app)
 app.use(cors())
 // request body parsing
 app.use(express.json())
-
+// static upload folder for images
+app.use(express.static('uploads'))
 // GET / -- test index route
 app.get('/', (req, res) => {
     res.json({ msg: 'hello backend 🤖' })
