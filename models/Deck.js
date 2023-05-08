@@ -7,6 +7,10 @@ const FlashcardSchema = new mongoose.Schema({
     },
     back: {
         type: String
+    },
+    image: {
+        type: String,
+        default: null
     }
 }, {
     timestamps: true
