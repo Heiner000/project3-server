@@ -41,7 +41,8 @@ router.post('/register', async (req, res) => {
 		const payload = {
 			name: newUser.name,
 			email: newUser.email,
-			_id: newUser.id
+			_id: newUser.id,
+			score: newUser.score
 		}
 
 		// sign jwt and send back
@@ -81,7 +82,8 @@ router.post('/login', async (req, res) => {
 		const payload = {
 			name: foundUser.name,
 			email: foundUser.email,
-			_id: foundUser.id
+			_id: foundUser.id,
+			score: foundUser.score
 		}
 
 		// sign jwt and send back
@@ -123,11 +125,28 @@ router.put('/profile', authLockedRoute, async (req, res) => {
 	  }
 })
 
+// GET -- get the user's score
+router.get('/update-score/:id', async (req, res) => {
+	try {
+		const { id } = req.params
+		const user = await db.User.findById(id)
+
+		if (!user) {
+			return res.status(404).json({ msg: 'user not found' })
+		}
+
+		res.json({ msg: 'score fetched successfully', user })
+	} catch (err) {
+		console.warn(err)
+		res.status(500).json({ msg: 'server error updating score' })
+	}
+})
+
 // PUT -- updates user's score
 router.put('/update-score/:id', async (req, res) => {
 	try {
 		const { id } = req.params
-		const user = await User.findById(id)
+		const user = await db.User.findById(id)
 
 		if (!user) {
 			return res.status(404).json({ msg: 'user not found' })
