@@ -96,7 +96,8 @@ router.post('/:id/flashcards', authLockedRoute, async (req, res) => {
          
         const newFlashcard = {
             front: req.body.front,
-            back: req.body.back
+            back: req.body.back,
+            image: req.body.image
         }
 
         deck.flashcards.push(newFlashcard)
