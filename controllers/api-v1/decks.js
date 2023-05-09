@@ -1,6 +1,15 @@
 const router = require('express').Router()
 const db = require('../../models')
 const authLockedRoute = require('./authLockedRoute')
+// multipart form data packages
+const multer = require('multer')
+// cloudinary npm package to ma nage uploads
+const cloudinary = require('cloudinary').v2
+// utility for deleteing files
+const { unlinkSync } = require('fs')
+
+// config for multer
+const uploads = multer({ dest: 'uploads'})
 
 // GET /decks -- get all decks for a user
 router.get('/', authLockedRoute, async (req, res) => {
@@ -89,19 +98,26 @@ router.get('/:id/flashcards', authLockedRoute, async (req, res) => {
 })
 
 // POST /decks/:id/flashcards -- create a new flashcard
-router.post('/:id/flashcards', authLockedRoute, async (req, res) => {
+router.post('/:id/flashcards', authLockedRoute, uploads.single('image'), async (req, res) => {
     try {
         const { id } = req.params
         const deck = await db.Deck.findById(id)
-         
+         console.log(req.file)
+
+         // upload to cloudinary
+         const cloudData = await cloudinary.uploader.upload(req.file.path)
+
         const newFlashcard = {
             front: req.body.front,
             back: req.body.back,
-            image: req.body.image
+            image: cloudData.public_id
         }
 
         deck.flashcards.push(newFlashcard)
         await deck.save()
+
+        // delete the file so it doesn't clutter up the server folder
+        unlinkSync(req.file.path)
 
         res.json(newFlashcard)
     } catch (err) {
