@@ -1,5 +1,7 @@
 # CARD.IO Web App
 
+Live demo: https://card-io-study-app.netlify.app/
+
 A full-stack MERN application that enables users to create and manage digital flashcards to improve their learning experience. The application incorporates users authentication, image handling via Cloudinary API, and a responsive design for a seamless experienece across various devices.
 
 ## Description
@@ -8,8 +10,19 @@ The Card.io Web App provides an intuitive platform for users to create, edit, de
 
 ## Technologies
 
-+ We plan to utilize the Cloudinary API to handle uploading, storing, and retrieving images for user profiles and flashcards.
-+ Styling will be completed with React-Bootstrap package.
++ HTML, CSS, JavaScript
++ React
++ Node.js
++ Express
++ MongoDB
++ Mongoose
++ Cloudinary API
+
+## Installation Instructions
+1. Fork & clone the [server repo](https://github.com/gloreea/project3-server) & [client repo](https://github.com/EGORDYU/project3-client)
+2. Inside the project directory, install dependencies using "npm i"
+3. Touch a .env file to store your API key, API & JWT secrets
+4. Run npm start from client directory, & run nodemon from server directory
 
 ## ERDs
 
@@ -71,3 +84,8 @@ The Card.io Web App provides an intuitive platform for users to create, edit, de
 + Shuffle deck option
 + Profile page with stats
 + Track right/wrong answers
+
+## Team Mongeese
++ [Gloree Aranda](https://github.com/gloreea)
++ [Egor Dyuzhev](https://github.com/EGORDYU)
++ [Garrett Heiner](https://github.com/Heiner000)
