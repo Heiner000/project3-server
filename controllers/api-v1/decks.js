@@ -9,7 +9,7 @@ const cloudinary = require('cloudinary').v2
 const { unlinkSync } = require('fs')
 
 // config for multer
-const uploads = multer({ dest: 'uploads'})
+const uploads = multer({ dest: 'uploads' })
 
 // GET /decks -- get all decks for a user
 router.get('/', authLockedRoute, async (req, res) => {
@@ -18,7 +18,7 @@ router.get('/', authLockedRoute, async (req, res) => {
         res.json(decks.decks)
     } catch (err) {
         console.log(err)
-        res.status(500).json({ msg: 'server error getting decks'})
+        res.status(500).json({ msg: 'server error getting decks' })
     }
 })
 
@@ -38,7 +38,7 @@ router.post('/', authLockedRoute, async (req, res) => {
         res.json(savedDeck)
     } catch (err) {
         console.log(err)
-        res.status(500).json({ msg: 'server error creating deck'})
+        res.status(500).json({ msg: 'server error creating deck' })
     }
 })
 
@@ -50,7 +50,7 @@ router.get('/:id', authLockedRoute, async (req, res) => {
         res.json(deck)
     } catch (err) {
         console.log(err)
-        res.status(500).json({ msg: 'server error loading specific deck'})
+        res.status(500).json({ msg: 'server error loading specific deck' })
     }
 })
 
@@ -63,7 +63,7 @@ router.put('/:id', authLockedRoute, async (req, res) => {
         res.json({ result: updatedDeck })
     } catch (err) {
         console.log(err)
-        res.status(500).json({ msg: 'server error updating deck'})
+        res.status(500).json({ msg: 'server error updating deck' })
     }
 })
 
@@ -99,30 +99,35 @@ router.get('/:id/flashcards', authLockedRoute, async (req, res) => {
 
 // POST /decks/:id/flashcards -- create a new flashcard
 router.post('/:id/flashcards', authLockedRoute, uploads.single('image'), async (req, res) => {
+    console.log('req.body:', req.body)
+    console.log('req.file:', req.file)
     try {
         const { id } = req.params
         const deck = await db.Deck.findById(id)
-         console.log(req.file)
+        // console.log(req.file)
 
-         // upload to cloudinary
-         const cloudData = await cloudinary.uploader.upload(req.file.path)
-
-        const newFlashcard = {
+        let newFlashcard = {
             front: req.body.front,
             back: req.body.back,
-            image: cloudData.public_id
+            image: "brain_training_em0esm"
+        }
+
+        // if there's an image, upload to cloudinary
+        if (req.file && req.file.path) {
+            const cloudData = await cloudinary.uploader.upload(req.file.path)
+            newFlashcard.image = cloudData.public_id
+
+            // delete the file so it doesn't clutter up the server folder
+            unlinkSync(req.file.path)
         }
 
         deck.flashcards.push(newFlashcard)
         await deck.save()
 
-        // delete the file so it doesn't clutter up the server folder
-        unlinkSync(req.file.path)
-
         res.json(newFlashcard)
     } catch (err) {
         console.log(err)
-        res.status(500).json({ msg: 'server error creating new flashcard'})
+        res.status(500).json({ msg: 'server error creating new flashcard' })
     }
 })
 
