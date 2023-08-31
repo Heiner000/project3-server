@@ -24,13 +24,20 @@ router.get('/:id', authLockedRoute, async (req, res) => {
 // PUT /flashcards/:id -- update a specific flashcard
 router.put('/:id', authLockedRoute, async (req, res) => {
     try {
+        console.log('Request Body: ', req.body)
         const { id } = req.params
+        console.log('Flashcard ID: ', id)
+
         const deck = await db.Deck.findOne({ 'flashcards._id': id })
+        console.log('Found Deck:', deck)
 
         if (deck) {
             const flashcard = deck.flashcards.id(id)
+            console.log('Found Flahcard: ', flashcard)
+
             flashcard.set(req.body)
             await deck.save()
+            
             res.json(flashcard)
         } else {
             res.status(404).json({ msg: 'flashcard not found' })
@@ -54,9 +61,9 @@ router.delete('/:id', authLockedRoute, async (req, res) => {
                 deck.flashcards.splice(flashcardIndex, 1);
                 await deck.save();
                 res.json({ msg: 'flashcard delete successful' });
-              } else {
+            } else {
                 res.status(404).json({ msg: 'flashcard not found' });
-              }
+            }
         } else {
             res.status(404).json({ msg: 'flashcard not found' })
         }
